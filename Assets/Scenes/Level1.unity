@@ -42846,7 +42846,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Please help me collect 20 \ncoins and deposit them by the flag at the
-    end of this level!!!"
+    end of this level!!!\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -46173,7 +46173,7 @@ MonoBehaviour:
   dialougeBox: {fileID: 819140192}
   finishedText: {fileID: 1560078297}
   unFinishedText: {fileID: 1015263183}
-  coinsQuestGoal: 2
+  coinsQuestGoal: 20
   LevelToLoad: 2
 --- !u!61 &1951975675
 BoxCollider2D:
