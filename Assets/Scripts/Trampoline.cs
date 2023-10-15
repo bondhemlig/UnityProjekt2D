@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 public class Trampoline : MonoBehaviour
 {
 
-    private float jumpForce = 700f;
+    private float jumpForce = 300f;
     
     private Vector3 startPos;
     private Vector3 jumpPos;
