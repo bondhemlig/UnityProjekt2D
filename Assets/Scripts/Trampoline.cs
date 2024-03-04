@@ -6,14 +6,17 @@ using UnityEngine.UIElements;
 public class Trampoline : MonoBehaviour
 {
 
-    private float jumpForce = 300f;
-    
+    private float jumpForce = 600f;
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip trampolineSound;
+
     private Vector3 startPos;
     private Vector3 jumpPos;
 
     private Animator anim;
     private void Start()
     {
+        audioSource = gameObject.AddComponent<AudioSource>();
         //startPos = transform.position;
         //jumpPos = new Vector3(startPos.x - 0.49615f, startPos.y, 0);
 
@@ -27,7 +30,10 @@ public class Trampoline : MonoBehaviour
             Rigidbody2D character = collision.GetComponent<Rigidbody2D>();
             character.velocity = new Vector2(character.velocity.x, 0);
             character.AddForce(new Vector2(0, jumpForce));
-           
+            if (trampolineSound)
+            {
+                audioSource.PlayOneShot(trampolineSound, 0.5f);
+            }
             
             anim.SetTrigger("Jump");
            

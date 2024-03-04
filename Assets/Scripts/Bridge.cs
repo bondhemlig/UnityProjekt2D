@@ -9,11 +9,14 @@ public class Bridge : MonoBehaviour
 
     private Animator anim;
     private bool hasPlayedAnimation = false;
-
+    private AudioSource audioSource;
+    public AudioClip activateBox;
 
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = gameObject.AddComponent<AudioSource>();
+
         anim = GetComponent<Animator>();
     }
 

@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class Quest : MonoBehaviour
 {
+    LevelSave saveData = new LevelSave();
+    bool gameSaving = false;
+
     public GameObject dialougeBox, finishedText, unFinishedText;
     public int coinsQuestGoal = 20;
     public int LevelToLoad;
@@ -12,16 +15,25 @@ public class Quest : MonoBehaviour
 
     private BoxCollider2D checkpointCollider;
     private Animator animationController;
+    private AudioSource audioSource;
+    public AudioClip finishQuestAudioClip;
+
+
 
     private void Start()
     {
+        audioSource = gameObject.AddComponent<AudioSource>();
         animationController = GetComponent<Animator>();
         checkpointCollider = GetComponent<BoxCollider2D>();
     }
 
     private void onLevelCompleted()
     {
-
+        if (!gameSaving)
+        {
+            gameSaving = true;
+            saveData.currentLevel = LevelToLoad;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D otherCollision)
@@ -38,8 +50,13 @@ public class Quest : MonoBehaviour
                 unFinishedText.SetActive(false);
                 onLevelCompleted();
 
-                Invoke("LoadNextLevel", 6f);
+                Invoke("LoadNextLevel", 7.5f);
+                if (!levelIsLoading)
+                {
+                    
+                }
                 levelIsLoading = true;
+                
             }
             else
             {
