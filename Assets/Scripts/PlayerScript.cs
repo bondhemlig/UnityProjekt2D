@@ -11,8 +11,14 @@ using TMPro;
 public class PlayerState : MonoBehaviour
 {
     public Transform leftFoot, rightFoot;
-    public float rayDistance = 0.25f;
-    private bool isGrounded; //fråga eller påstående
+    public float rayDistance = 0.35f;
+    private bool isGrounded = false; //fråga eller påstående
+    private enum groundMaterials
+    {
+        Grass,
+        Wood
+    }
+    private Enum currentGround;
     public LayerMask whatIsGround;
 
     public Transform respawnPosition;
@@ -40,7 +46,7 @@ public class PlayerState : MonoBehaviour
     private SpriteRenderer playerRenderer;
     private Animator anim;
 
-    public AudioClip jumpSound, coinPickupSound;
+    public AudioClip jumpSound, coinPickupSound, singleFootstepSoundFoley, killRockSound, killMushroomSound, takeDamageSound, restoreHealth;
     private AudioSource audioSource;
 
     //Event for doing a cool effect!
@@ -83,9 +89,12 @@ public class PlayerState : MonoBehaviour
 
         //Funkar utan!
         //anim.SetBool("IsGrounded", CheckIfGrounded());
-        anim.SetBool("BefinnerSigSpelarenPåMarken", CheckIfGrounded());
 
-        if (Input.GetButtonDown("Jump") && CheckIfGrounded() == true)
+        isGrounded = CheckIfGrounded();
+        anim.SetBool("BefinnerSigSpelarenPåMarken", isGrounded);
+
+
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
             DoJump();
         }
@@ -138,6 +147,9 @@ public class PlayerState : MonoBehaviour
 
         if (leftHit.collider != null && HasGroundTag(leftHit) || (rightHit.collider != null && HasGroundTag(rightHit)))
         {
+            //check ground material
+
+
             return true;
         }
         else
@@ -173,23 +185,23 @@ public class PlayerState : MonoBehaviour
         Vector2 playerRigidBodyVelocity = rigidBodyComponent.velocity;
         rigidBodyComponent.velocity = new Vector2(playerRigidBodyVelocity.x, 0);
         rigidBodyComponent.AddForce(new Vector2(0, enemyMushRoomBounciness));
-
         //DoJump(enemyMushRoomBounciness);
     }
 
     void OnJumpOnRock()
     {
         print("Player jumped on a rock");
+        audioSource.PlayOneShot(killRockSound, 0.5f);
         OnJumpOnEnemy();
+
     }
 
 
     void OnJumpedOnMushroom()
     {
         print("Player jumped on a mushroom.");
-        
+        audioSource.PlayOneShot(killMushroomSound, 0.5f);
         OnJumpOnEnemy();
-
     }
 
     private void TakeKnockback(float KnockBackForce, float upForce)
@@ -248,7 +260,7 @@ public class PlayerState : MonoBehaviour
         else
         {
             int healthToRestore = HealthPickup.GetComponent<HealthPickup>().healthAmount;
-
+            audioSource.PlayOneShot(restoreHealth, 0.5f);
             Destroy(HealthPickup);
             currentHealth = Math.Clamp(currentHealth + healthToRestore, 0, startingHealth);
             UpdateHealthBar();
@@ -270,6 +282,7 @@ public class PlayerState : MonoBehaviour
 
     public void TakeDamage(int damageAmount)
     {
+        audioSource.PlayOneShot(takeDamageSound, 0.5f);
         currentHealth = currentHealth - damageAmount;
         //print(CurrentHealth);
         UpdateHealthBar();
@@ -317,7 +330,28 @@ public class PlayerState : MonoBehaviour
 
     }
 
+    [SerializeField] private int firstFootStep = 1;
+    [SerializeField] private int secondFootStep = 13;
 
+    public void Frame (string direction) //Object obj, float d
+    {
+        if (!isGrounded)
+        {
+            return;
+        }
+        
+        if (direction == "Right")
+        {
+            audioSource.PlayOneShot(singleFootstepSoundFoley, 0.5f);
+        }
+        else //Left
+        {
+            audioSource.PlayOneShot(singleFootstepSoundFoley, 0.5f);
+
+        }
+
+
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
