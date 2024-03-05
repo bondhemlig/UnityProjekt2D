@@ -17,8 +17,8 @@ public class MovingPlatform : MonoBehaviour
         StartTargetStart = starting_moveTowardsTarget.position;
         FinishTargetFinish = finishMoveTowardsTargetStart.position;
 
-        print(StartTargetStart);
-        print(FinishTargetFinish);
+        //print(StartTargetStart);
+        //print(FinishTargetFinish);
         CurrentTargetVector3 = StartTargetStart;
     }
 

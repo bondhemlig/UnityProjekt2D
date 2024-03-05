@@ -330,8 +330,6 @@ public class PlayerState : MonoBehaviour
 
     }
 
-    [SerializeField] private int firstFootStep = 1;
-    [SerializeField] private int secondFootStep = 13;
 
     public void Frame (string direction) //Object obj, float d
     {

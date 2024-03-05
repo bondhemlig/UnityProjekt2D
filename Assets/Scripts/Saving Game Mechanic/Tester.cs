@@ -6,33 +6,45 @@ using UnityEngine.UIElements;
 
 public class Tester : MonoBehaviour
 {
-    private LevelSave saveData; 
-    private save_script saver; 
-    private load_Script loader;
+    private save_script save_script; 
+    private load_Script load_script;
     public TMPro.TMP_Text textLabel;
+    string fileName = "TestData";
+    
 
     // Start is called before the first frame update
     void Start()
     {
         
-        saveData = new LevelSave();
-        saver = new save_script();
-        loader = new load_Script();
-        saver.save_game();
-        loader.load_data();
+        save_script = new save_script();
+        load_script = new load_Script();
+
+
+        LevelSave savedData = load_script.load_data(fileName);
+        Debug.Log("Saved data: " + savedData);
+        if (savedData != null )
+        {
+            save_script.interLevelData = savedData;
+        }
+
         textLabel.text = "Loading..";
-        textLabel.text = "Level integer loaded: " + saveData.currentLevel;
-        print("Data Loaded: " + saveData.currentLevel);
+        textLabel.text = "Level integer loaded: " + save_script.interLevelData.currentLevel;
+        print("Data Loaded: " + save_script.interLevelData.currentLevel);
+
     }
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.N)) {
-            print(" current level incremented to " + saveData.currentLevel);
-            saveData.currentLevel += 1;
-            saver.save_game();
+            print(" current level incremented to " + save_script.interLevelData.currentLevel);
+            save_script.interLevelData.currentLevel += 1;
         }
+    }
 
+    private void OnDisable()
+    {
+        print("Disable");
+        save_script.save_game(fileName);
     }
 }

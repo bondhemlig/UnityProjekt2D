@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Quest : MonoBehaviour
 {
-    LevelSave saveData = new LevelSave();
-    bool gameSaving = false;
-
+    private LevelSaver saveLevel;
     public GameObject dialougeBox, finishedText, unFinishedText;
     public int coinsQuestGoal = 20;
     public int LevelToLoad;
@@ -22,6 +21,7 @@ public class Quest : MonoBehaviour
 
     private void Start()
     {
+        saveLevel = gameObject.AddComponent<LevelSaver>();
         audioSource = gameObject.AddComponent<AudioSource>();
         animationController = GetComponent<Animator>();
         checkpointCollider = GetComponent<BoxCollider2D>();
@@ -29,11 +29,7 @@ public class Quest : MonoBehaviour
 
     private void onLevelCompleted()
     {
-        if (!gameSaving)
-        {
-            gameSaving = true;
-            saveData.currentLevel = LevelToLoad;
-        }
+        saveLevel.setCurrentLevel(LevelToLoad);
     }
 
     private void OnTriggerEnter2D(Collider2D otherCollision)

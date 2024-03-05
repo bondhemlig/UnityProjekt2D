@@ -14168,6 +14168,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5469263090542798089, guid: 97cd8a2bb83e3c147a453e0a11470308, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 48b90fbbbfe94d4498ff335720564522, type: 2}
     - target: {fileID: 6502769433777362626, guid: 97cd8a2bb83e3c147a453e0a11470308, type: 3}
       propertyPath: m_Name
       value: Medium Sized Rock
