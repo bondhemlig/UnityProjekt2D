@@ -18,9 +18,9 @@ public class Quest : MonoBehaviour
     public AudioClip finishQuestAudioClip;
 
 
-
-    private void Start()
+private void Start()
     {
+
         saveLevel = gameObject.AddComponent<LevelSaver>();
         audioSource = gameObject.AddComponent<AudioSource>();
         animationController = GetComponent<Animator>();
@@ -30,6 +30,51 @@ public class Quest : MonoBehaviour
     private void onLevelCompleted()
     {
         saveLevel.setCurrentLevel(LevelToLoad);
+        
+    }
+
+    public void checkJumpToLevel()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab)) {
+
+                print("Tab");
+            print(!levelIsLoading);
+            //no this does not work
+                if ( Input.GetKeyDown(KeyCode.Keypad0) && !levelIsLoading )
+                {
+                    levelIsLoading = true;
+                    int levelNumber = int.Parse("0");
+                    print(levelNumber + "큗ound");
+                    SceneManager.LoadScene(levelNumber);
+                }
+                if (Input.GetKeyDown(KeyCode.Alpha1) && !levelIsLoading)
+                {
+                    levelIsLoading = true;
+                    int levelNumber = int.Parse("1");
+                    print(levelNumber + "큗ound");
+                    SceneManager.LoadScene(levelNumber);
+                }
+                if (Input.GetKeyDown(KeyCode.Alpha2) && !levelIsLoading)
+                {
+                    levelIsLoading = true;
+                    int levelNumber = int.Parse("2");
+                    print(levelNumber + "큗ound");
+                    SceneManager.LoadScene(levelNumber);
+                }
+                if (Input.GetKeyDown(KeyCode.Alpha3) && !levelIsLoading)
+                {
+                    levelIsLoading = true;
+                    int levelNumber = int.Parse("3");
+                    print(levelNumber + "큗ound");
+                    SceneManager.LoadScene(levelNumber);
+                }
+
+        }
+    }
+
+    private void Update()
+    {
+        checkJumpToLevel();
     }
 
     private void OnTriggerEnter2D(Collider2D otherCollision)
@@ -49,9 +94,9 @@ public class Quest : MonoBehaviour
                 Invoke("LoadNextLevel", 7.5f);
                 if (!levelIsLoading)
                 {
-                    
+                    levelIsLoading = true;
+                    saveLevel.savePlayerStatsOnLevelEnd(state);
                 }
-                levelIsLoading = true;
                 
             }
             else

@@ -62,7 +62,10 @@ public class MenuController : MonoBehaviour
         {
             return;
         }
-        continueButtonText.text = "Continue " + save_script.interLevelData.selectedSaveName + " (Level: " + save_script.interLevelData.currentLevel + ") ";
+
+        LevelSave lastSaveData = load_script.load_data(save_script.interLevelData.selectedSaveName); //load the latest save and retrieve information to display below
+        print(lastSaveData.totalCoinsCollected);
+        continueButtonText.text = "Continue '" + save_script.interLevelData.selectedSaveName + "' \n Level: " + lastSaveData.currentLevel + ", " + lastSaveData.totalCoinsCollected + " Total Coins";
     }
 
     public void loadSaveGame()
@@ -76,10 +79,9 @@ public class MenuController : MonoBehaviour
     {
         dropdown.ClearOptions();
         List<string> m_DropOptions = save_script.interLevelData.saveNames.ToList<string>();
+        m_DropOptions.RemoveAll(x => string.IsNullOrEmpty(x)); //clear empty strings.
         dropdown.AddOptions(m_DropOptions);
-
     }
-
 
     public void create_save_game()
     {

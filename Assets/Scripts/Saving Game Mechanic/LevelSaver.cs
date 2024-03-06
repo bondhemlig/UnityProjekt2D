@@ -33,6 +33,18 @@ public class LevelSaver : MonoBehaviour
         save_script.save_game(thisSaveFileName);
     }
 
+    public void savePlayerStatsOnLevelEnd(PlayerState playerState)
+    {
+        if (save_script.interLevelData.totalCoinsCollected == null) //backward compability :7
+        {
+            save_script.interLevelData.totalCoinsCollected = 0;
+        }
+
+        save_script.interLevelData.totalCoinsCollected += playerState.coinsCollected;
+        print("Increased coinscollected by " + playerState.coinsCollected + " to " + playerState.coinsCollected);
+        saveProgress();
+    }
+
     private void OnDisable()
     {
         saveProgress();

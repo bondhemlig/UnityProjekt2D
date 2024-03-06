@@ -7,6 +7,7 @@ public class LevelSave
     public string[] saveNames = new string[0];
     public string selectedSaveName = "";
 
+    public int totalCoinsCollected = 0;
     public float t2;
     public bool t3;
     public int[] t4;
