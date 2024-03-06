@@ -273,7 +273,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 328
   moveSpeed: 60
-  playerDamage: 50
   contactFilter2D:
     useTriggers: 0
     useLayerMask: 0

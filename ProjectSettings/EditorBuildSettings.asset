@@ -15,15 +15,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Level 2 - Grapple Hook Introduction with scaffolding.unity
     guid: 030fde31f5ebe8a40949ae587e3166df
   - enabled: 1
-    path: Assets/Scenes/Level 2 - Testing.unity
+    path: Assets/Scenes/Grapple Hook Tests/Level 2 - Testing.unity
     guid: 2757644321ca254429eba59d56946900
   - enabled: 1
-    path: Assets/Scenes/Grapple Hook.unity
+    path: Assets/Scenes/Grapple Hook Tests/Grapple Hook.unity
     guid: a6e5652309ea2b644bf2f89e0bf6efe6
   - enabled: 0
-    path: Assets/Scenes/OldLevel2.unity
+    path: Assets/Scenes/delete/OldLevel2.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 0
-    path: Assets/Scenes/Level 3.unity
+    path: Assets/Scenes/delete/Level 3.unity
     guid: bc278521f7715174a9ad056d9f4de163
   m_configObjects: {}
