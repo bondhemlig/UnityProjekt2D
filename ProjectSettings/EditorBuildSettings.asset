@@ -14,10 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level 2 - Grapple Hook Introduction with scaffolding.unity
     guid: 030fde31f5ebe8a40949ae587e3166df
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Grapple Hook Tests/Level 2 - Testing.unity
     guid: 2757644321ca254429eba59d56946900
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Grapple Hook Tests/Grapple Hook.unity
     guid: a6e5652309ea2b644bf2f89e0bf6efe6
   - enabled: 0

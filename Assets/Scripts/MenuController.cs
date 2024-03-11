@@ -88,8 +88,9 @@ public class MenuController : MonoBehaviour
         string saveName = newGameInputField.text;
         print(save_script.interLevelData.saveNames);
         Array.Resize(ref save_script.interLevelData.saveNames, save_script.interLevelData.saveNames.Length + 1);
-
-        ArrayUtility.Insert<string>(ref save_script.interLevelData.saveNames, save_script.interLevelData.saveNames.Length - 1, saveName);
+        save_script.interLevelData.saveNames.Append(saveName); //add value, with append (Hope that works :c)
+        //save_script.interLevelData.saveNames[save_script.interLevelData.saveNames.Length - 1] = saveName;
+        //ArrayUtility.Insert<string>(ref save_script.interLevelData.saveNames, save_script.interLevelData.saveNames.Length - 1, saveName);
         save_script.interLevelData.selectedSaveName = saveName;
 
         StartGame();
@@ -100,7 +101,18 @@ public class MenuController : MonoBehaviour
        string saveName = removeSaveGames.options[removeSaveGames.value].text;
           
         print(saveName + " savename detected");
-        ArrayUtility.Remove(ref save_script.interLevelData.saveNames, saveName);
+
+        for (int i = 0; i < save_script.interLevelData.saveNames.Length; i++)
+        {
+            string namePart = save_script.interLevelData.saveNames.ElementAt(i);
+            
+            if (String.Equals(namePart, saveName))
+            {
+                //remove value
+                save_script.interLevelData.saveNames[i] = null;
+            }
+        }
+        //ArrayUtility.Remove(ref save_script.interLevelData.saveNames, saveName);
         load_script.delete_data(saveName);
         save_script.save_game(META_SAVEFILENAME);
         populateDropdown(removeSaveGames);

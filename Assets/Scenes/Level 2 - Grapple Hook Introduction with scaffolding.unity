@@ -9302,7 +9302,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 1978, y: -130}
   m_SizeDelta: {x: 250, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &819140194
@@ -20998,7 +20998,7 @@ MonoBehaviour:
   finishedText: {fileID: 1560078297}
   unFinishedText: {fileID: 1015263183}
   coinsQuestGoal: 20
-  LevelToLoad: 3
+  LevelToLoad: 0
   finishQuestAudioClip: {fileID: 8300000, guid: 9b68d096976e248479ec244743df43c2, type: 3}
 --- !u!61 &1951975675
 BoxCollider2D:
